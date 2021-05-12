@@ -26,6 +26,7 @@ public:
 
 		const QString debug_console_mode           = tr("Increases the amount of usable system memory to match a DECR console and more.\nCauses some software to behave differently than on retail hardware.");
 		const QString silence_all_logs             = tr("Stop writing any logs after game startup. Don't use unless you believe it's necessary.");
+		const QString sly2                         = tr("Emulates an overly accurate VRSQRTEFP which fixes the black screen in Sly 2.");
 		const QString read_color                   = tr("Initializes render target memory using vm memory.");
 		const QString read_depth                   = tr("Initializes render target memory using vm memory.");
 		const QString dump_depth                   = tr("Writes depth buffer values to vm memory.");

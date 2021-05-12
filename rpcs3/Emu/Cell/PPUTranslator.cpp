@@ -1487,7 +1487,13 @@ void PPUTranslator::VRLW(ppu_opcode_t op)
 
 void PPUTranslator::VRSQRTEFP(ppu_opcode_t op)
 {
+if (!g_cfg.core.sly2) {
+	const auto result = m_ir->CreateFDiv(ConstantVector::getSplat({4, false}, ConstantFP::get(GetType<f32>(), 1.0)), Call(GetType<f32[4]>(), "llvm.sqrt.v4f32", GetVr(op.vb, VrType::vf)));
+
+	SetVr(op.vd, VecHandleResult(result));
+} else {
 	SetVr(op.vd, Call(GetType<f32[4]>(), "llvm.x86.sse.rsqrt.ps", GetVr(op.vb, VrType::vf)));
+}
 }
 
 void PPUTranslator::VSEL(ppu_opcode_t op)
